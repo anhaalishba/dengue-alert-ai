@@ -3,9 +3,6 @@ numpy
 scikit-learn
 xgboost
 shap
-torch
-matplotlib
-streamlit
 joblib
 python-dotenv
 google-genai
