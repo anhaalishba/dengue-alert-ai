@@ -1,0 +1,43 @@
+/* extra styles for the landing page (uses the variables and base styles from style.css) */
+.land .hero-in { padding: 64px 20px 72px; }
+.land-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+.land-copy h1 { font-size: clamp(2rem, 4.4vw, 3.2rem); margin: 16px 0 14px; letter-spacing: -.02em; }
+.land-copy p { max-width: 560px; font-size: 1.1rem; }
+.pills { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.pills li { background: rgba(255,255,255,.18); padding: 8px 16px; border-radius: 999px; font-weight: 600; font-size: .92rem; }
+
+.auth { color: var(--ink); padding: 8px 26px 26px; border-radius: 22px; box-shadow: 0 20px 60px rgba(2,6,23,.35); }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: var(--soft); border-radius: 14px; padding: 5px; margin: 18px 0 8px; }
+.tabs button { border: 0; background: transparent; color: var(--muted); font-weight: 700; padding: 10px; border-radius: 10px; }
+.tabs button.on { background: var(--card); color: var(--ink); box-shadow: 0 1px 4px rgba(15,23,42,.18); }
+.form h2 { font-size: 1.5rem; margin-top: 14px; }
+.form .sub { color: var(--muted); margin: 4px 0 14px; font-size: .95rem; }
+.form label { display: block; font-weight: 600; font-size: .88rem; margin: 12px 0 6px; }
+.form input[type=text], .form input[type=email], .form input[type=password] {
+  width: 100%; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 12px; padding: 12px 14px; font: inherit; }
+.form input:focus { outline: 3px solid color-mix(in srgb, var(--brand2) 45%, transparent); border-color: var(--brand2); }
+.pw { position: relative; }
+.pw input { padding-right: 46px !important; }
+.eye { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); border: 0; background: transparent; font-size: 18px; padding: 6px 8px; opacity: .7; }
+.eye:hover { opacity: 1; }
+.form .check { display: flex; align-items: center; gap: 8px; font-weight: 500; color: var(--muted); margin: 14px 0 0; }
+.form .check input { width: 18px; height: 18px; accent-color: var(--brand2); }
+.form-msg { min-height: 22px; margin: 12px 0 4px; font-size: .9rem; font-weight: 600; color: var(--high); }
+.form-msg.ok { color: var(--low); }
+.btn-pill.wide { width: 100%; padding: 13px; font-size: 1rem; }
+.btn-pill:disabled { opacity: .6; cursor: wait; }
+.switch { text-align: center; margin-top: 16px; color: var(--muted); font-size: .92rem; }
+.switch a { color: var(--brand2); font-weight: 700; text-decoration: none; }
+.meter { height: 6px; background: var(--soft); border-radius: 99px; overflow: hidden; margin-top: 10px; }
+.meter i { display: block; height: 100%; width: 0; border-radius: 99px; background: var(--high); transition: width .3s, background .3s; }
+.meter-txt { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+
+.feat .f-ic { width: 50px; height: 50px; display: grid; place-items: center; font-size: 26px; border-radius: 14px; background: var(--soft); margin-bottom: 12px; }
+.feat h4 { margin-bottom: 6px; }
+.feat p { color: var(--muted); font-size: .95rem; }
+.land ~ main .sec { scroll-margin-top: 80px; }
+
+@media (max-width: 900px) {
+  .land-grid { grid-template-columns: 1fr; gap: 30px; }
+  .land .hero-in { padding: 40px 16px 48px; }
+}

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DengueAlert AI · Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%9F%3C/text%3E%3C/svg%3E">
+<script>
+  try { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="shell">
+<aside class="side" id="side">
+  <a class="logo" href="/dashboard" aria-label="DengueAlert AI home"><span class="logo-mark"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span>DengueAlert <b>AI</b></span></a>
+  <div>
+    <div class="side-label">Menu</div>
+    <nav class="side-nav" id="navLinks" aria-label="Main">
+      <a href="#forecast" class="active"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>Forecast</a>
+      <a href="#advice"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Advice</a>
+      <a href="#whatif"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6"/><path d="M10 3v6L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9V3"/></svg></span>What-if</a>
+      <a href="/bot"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Ask DengueBot</a>
+    </nav>
+  </div>
+  <div class="side-foot">
+    <div class="side-user"><span class="user-chip" id="userChip" hidden><span class="avatar" id="avatar">U</span><span id="userName"></span></span></div>
+    <div class="side-row">
+      <button class="btn-pill" id="themeBtn" aria-label="Toggle dark mode"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="btn-pill" id="logoutBtn">Log out</button>
+    </div>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+<div class="content">
+<div class="topbar"><button class="icon-btn" id="menuBtn" aria-label="Open menu"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button><a class="logo" href="/dashboard"><span class="logo-mark"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span>DengueAlert <b>AI</b></span></a></div>
+<section class="hero" id="top">
+  <div class="hero-in">
+    <h1>Dengue warning, <span class="grad">weeks ahead.</span></h1>
+    <div class="chips">
+      <span class="chip"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span id="chipSource">Loading…</span></span>
+    </div>
+  </div>
+</section>
+
+<div class="controls" id="controls">
+  <div class="controls-in">
+    <div class="week-ctl">
+      <label for="weekRange" class="ctl-label">Select week</label>
+      <div class="week-row">
+        <button class="btn-sq" id="prevBtn" aria-label="Previous week">‹</button>
+        <input type="range" id="weekRange" min="0" max="0" value="0" aria-label="Week">
+        <button class="btn-sq" id="nextBtn" aria-label="Next week">›</button>
+        <button class="btn-pill" id="playBtn" aria-label="Play through the weeks">Play</button>
+      </div>
+      <div class="week-label" id="weekLabel" aria-live="polite">—</div>
+    </div>
+    <div class="lang-ctl">
+      <span class="ctl-label">Advice language</span>
+      <div class="seg" id="langSeg" role="group" aria-label="Advice language">
+        <button data-lang="English" class="on">English</button>
+        <button data-lang="اردو">اردو</button>
+        <button data-lang="Roman Urdu">Roman Urdu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- ============================ FORECAST -->
+  <section id="forecast" class="sec">
+    <div class="sec-head"><h2>Forecast</h2></div>
+
+    <div class="risk-card" id="riskCard" data-risk="LOW">
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 200 120" class="gauge" role="img" aria-label="Risk gauge">
+          <path d="M 14 104 A 86 86 0 0 1 186 104" class="g-track" pathLength="100"/>
+          <path d="M 14 104 A 86 86 0 0 1 186 104" class="g-fill" id="gFill" pathLength="100" stroke-dasharray="0 100"/>
+          <line x1="4" y1="104" x2="26" y2="104" class="g-tick" id="gTick" transform="rotate(120 100 104)"/>
+          <text x="100" y="86" class="g-num" id="gNum" text-anchor="middle">–</text>
+          <text x="100" y="106" class="g-sub" text-anchor="middle">cases expected</text>
+        </svg>
+        <div class="g-legend">Orange mark = outbreak level (<span id="thrTxt">–</span>)</div>
+      </div>
+      <div class="risk-text">
+        <span class="badge" id="riskBadge">LOW RISK</span>
+        <h3 id="riskTitle">Loading…</h3>
+        <p id="riskMsg"></p>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card metric"><span class="m-ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><div class="m-lab">Cases this week</div><div class="m-val" id="mNow">–</div></div></div>
+      <div class="card metric"><span class="m-ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><div><div class="m-lab">Forecast in <span class="h-weeks">4</span> weeks</div><div class="m-val"><span id="mPred">–</span> <span class="delta" id="mDelta"></span></div></div></div>
+      <div class="card metric"><span class="m-ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></span><div><div class="m-lab">What really happened</div><div class="m-val" id="mActual">–</div></div></div>
+    </div>
+
+    <div class="card chart-card">
+      <div class="card-title">Forecast vs. reality</div>
+      <div class="chart-box"><canvas id="mainChart" aria-label="Forecast chart" role="img"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Why this forecast?</div>
+      <ul class="factors" id="whyMain"></ul>
+    </div>
+
+    <div class="grid3" id="wxRow">
+      <div class="card metric" id="wxRain"><span class="m-ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.3"/><path d="M8 19v2M8 13v2M16 19v2M16 13v2M12 21v2M12 15v2"/></svg></span><div><div class="m-lab">Rainfall this week</div><div class="m-val">–</div></div></div>
+      <div class="card metric" id="wxHum"><span class="m-ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.7s7 7.3 7 12.3a7 7 0 0 1-14 0c0-5 7-12.3 7-12.3z"/></svg></span><div><div class="m-lab">Humidity</div><div class="m-val">–</div></div></div>
+      <div class="card metric" id="wxTemp"><span class="m-ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 14.8V4a2 2 0 0 0-4 0v10.8a4 4 0 1 0 4 0z"/></svg></span><div><div class="m-lab">Temperature</div><div class="m-val">–</div></div></div>
+    </div>
+  </section>
+
+  <!-- ============================ ADVICE -->
+  <section id="advice" class="sec">
+    <div class="sec-head"><h2>What should people do?</h2></div>
+    <div class="card advice-card">
+      <div class="advice-body" id="adviceBox" dir="auto"><div class="skel"></div><div class="skel s2"></div><div class="skel s3"></div></div>
+      <div class="advice-meta" id="adviceMeta"></div>
+    </div>
+  </section>
+
+  <!-- ============================ WHAT-IF -->
+  <section id="whatif" class="sec">
+    <div class="sec-head"><h2>What if the weather changes?</h2></div>
+    <div class="card">
+      <div class="sliders">
+        <div class="sl" id="slRain"><label for="rain">Rainfall change <output id="rainOut">0%</output></label><input type="range" id="rain" min="-100" max="200" step="10" value="0"></div>
+        <div class="sl" id="slHum"><label for="hum">Humidity change <output id="humOut">0 pts</output></label><input type="range" id="hum" min="-20" max="20" step="1" value="0"></div>
+        <div class="sl" id="slTemp"><label for="temp">Temperature change <output id="tempOut">0 °C</output></label><input type="range" id="temp" min="-5" max="5" step="0.5" value="0"></div>
+      </div>
+      <button class="btn-pill ghost" id="wiReset"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg>Reset</button>
+    </div>
+    <div class="grid3">
+      <div class="card metric"><span class="m-ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 10h-1.3A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span><div><div class="m-lab">Weather-based forecast</div><div class="m-val"><span id="wiW">–</span> <span class="delta" id="wiWd"></span></div></div></div>
+      <div class="card metric"><span class="m-ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/></svg></span><div><div class="m-lab">Full model forecast</div><div class="m-val"><span id="wiF">–</span> <span class="delta" id="wiFd"></span></div></div></div>
+      <div class="card metric"><span class="m-ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span><div><div class="m-lab">Risk with these changes</div><div class="m-val" id="wiRisk">–</div></div></div>
+    </div>
+  </section>
+
+    <!-- ============================ ASK -->
+  <section id="ask" class="sec">
+    <a class="bot-cta" href="/bot">
+      <span class="big"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      <div><h3>Ask DengueBot</h3><p>Questions about dengue? Chat with our AI assistant.</p></div>
+      <span class="go">Open chat<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div><b>DengueAlert AI</b> · Informational tool only, not medical advice.</div>
+</footer>
+</div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/vendor/chart.umd.js"></script>
+<script src="/common.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

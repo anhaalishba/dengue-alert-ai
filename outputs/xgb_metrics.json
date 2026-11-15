@@ -1,0 +1,36 @@
+{
+  "synthetic_data": false,
+  "horizon_weeks": 4,
+  "data_source": "DengAI benchmark: San Juan (1990-2008, past data)",
+  "outbreak_threshold": 39.5,
+  "main_model": "xgboost_residual",
+  "validation_MAE": {
+    "xgboost": 7.504152300141074,
+    "xgboost_residual": 6.484108663959937
+  },
+  "naive": {
+    "MAE": 13.52972972972973,
+    "RMSE": 23.618476505321684,
+    "outbreak_recall": 0.7647058823529411
+  },
+  "xgboost": {
+    "MAE": 16.554540897060086,
+    "RMSE": 38.047119498406516,
+    "outbreak_recall": 0.9411764705882353
+  },
+  "xgboost_residual": {
+    "MAE": 15.343754648346756,
+    "RMSE": 31.31747264451029,
+    "outbreak_recall": 0.8823529411764706
+  },
+  "weather_only": {
+    "MAE": 19.3814606563465,
+    "RMSE": 27.894049197526073,
+    "outbreak_recall": 0.6470588235294118
+  },
+  "lstm": {
+    "MAE": 22.574458869176592,
+    "RMSE": 51.36400036306614,
+    "outbreak_recall": 0.7941176470588235
+  }
+}

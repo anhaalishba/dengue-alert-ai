@@ -1,0 +1,79 @@
+/* Sidebar layout for the dashboard + DengueBot pages (loaded after style.css) */
+.shell { display: grid; grid-template-columns: 252px minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 22px; padding: 20px 14px;
+  background: var(--card); border-right: 1px solid var(--line); z-index: 60; }
+.side .logo { padding: 2px 8px; }
+.side-label { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 0 14px; margin-bottom: 6px; }
+.side-nav { display: grid; gap: 4px; }
+.side-nav a { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; text-decoration: none;
+  color: var(--muted); font-weight: 600; transition: .15s; }
+.side-nav a .ic { width: 22px; display: grid; place-items: center; }
+.side-nav a:hover { background: var(--soft); color: var(--ink); }
+.side-nav a.active { color: #fff; background: var(--brand); }
+.side-nav .new { margin-left: auto; font-size: .62rem; font-weight: 800; letter-spacing: .06em; padding: 2px 7px; border-radius: 6px;
+  background: var(--soft); color: var(--muted); }
+.side-foot { margin-top: auto; display: grid; gap: 10px; }
+.side-user { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 14px; background: var(--soft); min-width: 0; }
+.side-user .user-chip { min-width: 0; }
+.side #userName { display: inline; overflow: hidden; text-overflow: ellipsis; max-width: 130px; }
+.side-row { display: flex; gap: 8px; }
+.side-row .btn-pill { flex: 1; text-align: center; }
+
+.content { min-width: 0; }
+.topbar { display: none; }
+.scrim { display: none; }
+
+/* compact hero */
+.content .hero-in { max-width: 1080px; padding: 30px 28px 72px; }
+.content .hero h1 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin: 0 0 12px; }
+.content .chips { margin-top: 0; }
+.content .controls { top: 0; padding: 0 28px; }
+.content .controls-in { max-width: 1080px; }
+.content main { max-width: 1080px; padding: 8px 28px 40px; }
+.content .sec { scroll-margin-top: 120px; }
+
+/* DengueBot call-to-action on the dashboard */
+.bot-cta { display: flex; align-items: center; gap: 18px; padding: 22px 26px; text-decoration: none; color: #fff;
+  background: #0f2744; transition: background .15s; }
+.bot-cta:hover { background: #163861; }
+.bot-cta .big { width: 48px; height: 48px; border-radius: 10px; background: rgba(255,255,255,.12); display: grid; place-items: center; }
+.bot-cta .big .i { width: 24px; height: 24px; }
+.bot-cta .go .i { width: 16px; height: 16px; margin-left: 8px; vertical-align: -3px; }
+.bot-cta h3 { font-size: 1.3rem; margin-bottom: 2px; }
+.bot-cta p { opacity: .9; }
+.bot-cta .go { margin-left: auto; background: rgba(255,255,255,.14); padding: 9px 16px; border-radius: 8px; font-weight: 700; white-space: nowrap; }
+
+/* ---------- DengueBot page */
+.bot-wrap { max-width: 860px; margin: 0 auto; padding: 22px 24px; height: 100vh; display: flex; flex-direction: column; gap: 14px; }
+.bot-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.bot-head h1 { font-size: 1.4rem; }
+.bot-head .spacer { flex: 1; }
+.bot-card { flex: 1; min-height: 0; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+.bot-card .chat { flex: 1; max-height: none; align-content: start; padding: 20px; }
+.bot-card .ask-form { background: var(--card); }
+.welcome { text-align: center; padding: 28px 10px 8px; }
+.welcome .w-ic { width: 56px; height: 56px; margin: 0 auto; border-radius: 12px; background: var(--soft); color: var(--brand); display: grid; place-items: center; }
+.welcome .w-ic .i { width: 28px; height: 28px; }
+.welcome h2 { font-size: 1.5rem; margin: 8px 0 4px; }
+.welcome p { color: var(--muted); }
+.welcome .chips-row { justify-content: center; padding: 18px 0 0; }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; }
+  .side { position: fixed; left: 0; top: 0; width: 270px; transform: translateX(-100%); transition: transform .25s; box-shadow: none; }
+  body.side-open .side { transform: none; box-shadow: 0 0 40px rgba(0,0,0,.35); }
+  body.side-open .scrim { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 55; }
+  .topbar { display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 45; height: 56px; padding: 0 14px;
+    background: color-mix(in srgb, var(--card) 90%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .topbar .logo span:last-child { display: inline; }
+  .content .controls { top: 56px; padding: 0 10px; }
+  .content .hero-in { padding: 24px 16px 70px; }
+  .content main { padding: 4px 12px 32px; }
+  .content .sec { scroll-margin-top: 190px; }
+  .bot-wrap { height: calc(100dvh - 56px); padding: 12px; }
+  .bot-cta { flex-wrap: wrap; }
+  .bot-cta .go { margin-left: 0; }
+}
+
+.topbar .icon-btn .i { width: 20px; height: 20px; }
+.side-row .btn-pill { padding: 8px 10px; }

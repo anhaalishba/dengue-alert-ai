@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DengueAlert AI · DengueBot</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%9F%3C/text%3E%3C/svg%3E">
+<script>
+  try { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="shell">
+<aside class="side" id="side">
+  <a class="logo" href="/dashboard" aria-label="DengueAlert AI home"><span class="logo-mark"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span>DengueAlert <b>AI</b></span></a>
+  <div>
+    <div class="side-label">Menu</div>
+    <nav class="side-nav" id="navLinks" aria-label="Main">
+      <a href="/dashboard#forecast"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>Forecast</a>
+      <a href="/dashboard#advice"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Advice</a>
+      <a href="/dashboard#whatif"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6"/><path d="M10 3v6L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9V3"/></svg></span>What-if</a>
+      <a href="/bot" class="active"><span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Ask DengueBot</a>
+    </nav>
+  </div>
+  <div class="side-foot">
+    <div class="side-user"><span class="user-chip" id="userChip" hidden><span class="avatar" id="avatar">U</span><span id="userName"></span></span></div>
+    <div class="side-row">
+      <button class="btn-pill" id="themeBtn" aria-label="Toggle dark mode"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Theme</button>
+      <button class="btn-pill" id="logoutBtn">Log out</button>
+    </div>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+<div class="content">
+<div class="topbar"><button class="icon-btn" id="menuBtn" aria-label="Open menu"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button><a class="logo" href="/dashboard"><span class="logo-mark"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span>DengueAlert <b>AI</b></span></a></div>
+<div class="bot-wrap">
+  <div class="bot-head">
+    <h1>DengueBot</h1>
+    <span class="spacer"></span>
+    <div class="seg" id="langSeg" role="group" aria-label="Answer language">
+      <button data-lang="English" class="on">English</button>
+      <button data-lang="اردو">اردو</button>
+      <button data-lang="Roman Urdu">Roman Urdu</button>
+    </div>
+    <button class="btn-pill" id="clearBtn"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>Clear</button>
+  </div>
+  <div class="card bot-card">
+    <div class="chat" id="chat" aria-live="polite">
+      <div class="welcome" id="welcome">
+        <div class="w-ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h2>Ask me about dengue</h2>
+        <p>Pick a question or type your own.</p>
+        <div class="chips-row" id="askChips"></div>
+      </div>
+    </div>
+    <form id="askForm" class="ask-form">
+      <input type="text" id="askInput" maxlength="300" placeholder="Type your question…" autocomplete="off" aria-label="Your question">
+      <button class="btn-pill solid" type="submit">Ask</button>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/common.js"></script>
+<script src="/bot.js"></script>
+</body>
+</html>

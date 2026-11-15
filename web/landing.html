@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DengueAlert AI · Log in</title>
+<meta name="description" content="Forecast dengue outbreaks weeks ahead and get easy, WHO-based advice in English, Urdu or Roman Urdu.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%9F%3C/text%3E%3C/svg%3E">
+<script>
+  try { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="landing.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="/" aria-label="DengueAlert AI home"><span class="logo-mark"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span>DengueAlert <b>AI</b></span></a>
+ 
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode" title="Light / dark"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  </div>
+</header>
+
+<section class="hero land">
+  <div class="hero-in land-grid">
+    <div class="land-copy">
+      <span class="eyebrow">ML · Deep learning · Generative AI</span>
+      <h1>Dengue outbreak warnings, <span class="grad">weeks ahead.</span></h1>
+      <p>DengueAlert AI reads the weather and recent cases, forecasts dengue four weeks in advance, and tells people what to do in simple English, Urdu or Roman Urdu.</p>
+     
+    </div>
+
+    <div class="auth card" id="authCard">
+      <div class="tabs" role="tablist">
+        <button role="tab" id="tabLogin" aria-selected="true" class="on">Log in</button>
+        <button role="tab" id="tabSignup" aria-selected="false">Create account</button>
+      </div>
+
+      <form id="loginForm" class="form" novalidate>
+        <h2>Welcome back</h2>
+        <p class="sub">Log in to open your dashboard.</p>
+        <label for="liEmail">Email</label>
+        <input id="liEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <label for="liPass">Password</label>
+        <div class="pw"><input id="liPass" type="password" autocomplete="current-password" placeholder="Your password" required><button type="button" class="eye" data-for="liPass" aria-label="Show password"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+        <label class="check"><input type="checkbox" id="liRemember"> Keep me logged in for 7 days</label>
+        <div class="form-msg" id="liMsg" role="alert"></div>
+        <button class="btn-pill solid wide" type="submit" id="liBtn">Log in</button>
+        <p class="switch">New here? <a href="#" id="toSignup">Create an account</a></p>
+      </form>
+
+      <form id="signupForm" class="form" novalidate hidden>
+        <h2>Create your account</h2>
+        <p class="sub">It takes less than a minute.</p>
+        <label for="suName">Full name</label>
+        <input id="suName" type="text" autocomplete="name" placeholder="Your name" maxlength="60" required>
+        <label for="suEmail">Email</label>
+        <input id="suEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <label for="suPass">Password</label>
+        <div class="pw"><input id="suPass" type="password" autocomplete="new-password" placeholder="At least 8 characters" required><button type="button" class="eye" data-for="suPass" aria-label="Show password"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+        <div class="meter" aria-hidden="true"><i id="meterBar"></i></div>
+        <div class="meter-txt" id="meterTxt">Use 8+ characters</div>
+        <div class="form-msg" id="suMsg" role="alert"></div>
+        <button class="btn-pill solid wide" type="submit" id="suBtn">Create account</button>
+        <p class="switch">Already have an account? <a href="#" id="toLogin">Log in</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<footer class="foot">
+  <div><b>DengueAlert AI</b> ·By Anha Alishba.</div>
+</footer>
+
+<script src="landing.js"></script>
+</body>
+</html>
